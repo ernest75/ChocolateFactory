@@ -2,6 +2,7 @@ package com.example.chocolatefactory.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chocolatefactory.R
 import com.example.chocolatefactory.databinding.ActivityMainBinding
@@ -24,6 +25,8 @@ class MainActivity : ScopeActivity() {
     }
 
     private fun updateUi(uiModel: UiModel) {
+
+        binding.progress.visibility = if (uiModel is UiModel.Loading) View.VISIBLE else View.GONE
 
         when(uiModel){
             is UiModel.Content -> Timber.e(uiModel.workers.toString())
