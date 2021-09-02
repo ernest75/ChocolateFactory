@@ -9,6 +9,7 @@ import com.example.chocolatefactory.ui.detail.DetailActivity
 import com.example.chocolatefactory.ui.detail.DetailViewModel
 import com.example.chocolatefactory.ui.main.MainActivity
 import com.example.chocolatefactory.ui.main.MainViewModel
+import com.example.chocolatefactory.usecases.GetOmpaWorkerDetails
 import com.example.chocolatefactory.usecases.GetOmpaWorkers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -45,7 +46,8 @@ val scopesModule = module {
     }
 
     scope(named<DetailActivity>()) {
-        viewModel { (id: Int) -> DetailViewModel(id, get()) }
+        viewModel { (id: Int) -> DetailViewModel(id, get(), get()) }
+        scoped { GetOmpaWorkerDetails(get()) }
     }
 
 }

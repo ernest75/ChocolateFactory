@@ -1,6 +1,7 @@
 package com.example.chocolatefactory.ui.detail
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.example.chocolatefactory.R
 import com.example.chocolatefactory.databinding.ActivityDetailBinding
 import com.example.chocolatefactory.databinding.ActivityMainBinding
@@ -25,5 +26,13 @@ class DetailActivity : ScopeActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.model.observe(this, Observer(::updateUi))
+
+    }
+
+    private fun updateUi(uiModel: DetailViewModel.UiModel) {
+        when(uiModel){
+            is DetailViewModel.UiModel.Content -> Timber.e(uiModel.workerDetails.firstName)
+        }
     }
 }
