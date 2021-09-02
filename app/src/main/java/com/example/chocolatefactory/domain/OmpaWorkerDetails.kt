@@ -1,7 +1,6 @@
 package com.example.chocolatefactory.domain
 
 import com.example.chocolatefactory.network.models.Favorite
-import com.google.gson.annotations.SerializedName
 
 class OmpaWorkerDetails(
     val lastName: String,

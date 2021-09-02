@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.example.chocolatefactory.R
 import com.example.chocolatefactory.databinding.ActivityDetailBinding
 import com.example.chocolatefactory.databinding.ActivityMainBinding
+import com.example.chocolatefactory.ui.detail.DetailViewModel.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.core.parameter.parametersOf
@@ -30,9 +31,15 @@ class DetailActivity : ScopeActivity() {
 
     }
 
-    private fun updateUi(uiModel: DetailViewModel.UiModel) {
+    private fun updateUi(uiModel: UiModel) {
         when(uiModel){
-            is DetailViewModel.UiModel.Content -> Timber.e(uiModel.workerDetails.firstName)
+            is UiModel.Content -> {
+                populateView(uiModel)
+            }
         }
+    }
+
+    private fun populateView(uiModel: UiModel.Content) {
+
     }
 }

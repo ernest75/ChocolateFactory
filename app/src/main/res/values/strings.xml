@@ -2,4 +2,9 @@
     <string name="app_name">ChocolateFactory</string>
     <string name="description_image_worker">Image of the Ompa worker</string>
     <string name="lorem_ipsum">lorem ipsum</string>
+    <string name="lorem">Lorem</string>
+    <string name="ipsum">Ipsum</string>
+    <string name="gender">Gender</string>
+    <string name="description">Description</string>
+    <string name="song">Song</string>
 </resources>
