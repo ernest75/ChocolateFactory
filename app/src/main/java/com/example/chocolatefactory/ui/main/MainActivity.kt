@@ -5,12 +5,13 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chocolatefactory.common.TopSpaceItemDecoration
+import com.example.chocolatefactory.common.startActivityFor
 import com.example.chocolatefactory.databinding.ActivityMainBinding
 import com.example.chocolatefactory.ui.adapters.WorkersAdapter
+import com.example.chocolatefactory.ui.detail.DetailActivity
 import com.example.chocolatefactory.ui.main.MainViewModel.*
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : ScopeActivity() {
 
@@ -42,7 +43,10 @@ class MainActivity : ScopeActivity() {
         when(uiModel){
             is UiModel.Content -> {
                 workersAdapter.workers = uiModel.workers
-                Timber.e(uiModel.workers.toString())
+            }
+
+            is UiModel.Navigation -> startActivityFor<DetailActivity>{
+                putExtra(DetailActivity.WORKER, uiModel.workerId)
             }
         }
 

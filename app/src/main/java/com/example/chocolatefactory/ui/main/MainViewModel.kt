@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.chocolatefactory.common.ScopedViewModel
 import com.example.chocolatefactory.domain.OmpaWorker
-import com.example.chocolatefactory.network.models.OompaLoompaWorker
 import com.example.chocolatefactory.usecases.GetOmpaWorkers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -31,6 +30,7 @@ class MainViewModel(
     sealed class UiModel {
         object Loading : UiModel()
         data class Content(val workers: List<OmpaWorker>) : UiModel()
+        data class Navigation(val workerId: Int) : UiModel()
     }
 
     init {
@@ -38,7 +38,7 @@ class MainViewModel(
     }
 
     fun onWorkerClicked(worker: OmpaWorker) {
-        Timber.e("Clicked ${worker.firstName}")
+        _model.value = UiModel.Navigation(worker.id)
     }
 
     override fun onCleared() {

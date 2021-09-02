@@ -5,6 +5,8 @@ import com.example.chocolatefactory.data.repository.WorkersRepository
 import com.example.chocolatefactory.data.source.RemoteDataSource
 import com.example.chocolatefactory.network.OmpaWorkersDataSource
 import com.example.chocolatefactory.network.RetrofitClass
+import com.example.chocolatefactory.ui.detail.DetailActivity
+import com.example.chocolatefactory.ui.detail.DetailViewModel
 import com.example.chocolatefactory.ui.main.MainActivity
 import com.example.chocolatefactory.ui.main.MainViewModel
 import com.example.chocolatefactory.usecases.GetOmpaWorkers
@@ -15,6 +17,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
+import org.koin.core.scope.get
 import org.koin.dsl.module
 
 fun Application.initDI() {
@@ -39,6 +42,10 @@ val scopesModule = module {
     scope(named<MainActivity>()) {
         viewModel { MainViewModel(get(),get()) }
         scoped { GetOmpaWorkers(get()) }
+    }
+
+    scope(named<DetailActivity>()) {
+        viewModel { (id: Int) -> DetailViewModel(id, get()) }
     }
 
 }
