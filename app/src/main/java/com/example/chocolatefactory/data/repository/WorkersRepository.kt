@@ -3,7 +3,7 @@ package com.example.chocolatefactory.data.repository
 import com.example.chocolatefactory.data.source.RemoteDataSource
 import com.example.chocolatefactory.domain.OmpaWorker
 
-class OmpaRepository(
+class WorkersRepository(
     private val remoteDataSource: RemoteDataSource,
 ) {
 

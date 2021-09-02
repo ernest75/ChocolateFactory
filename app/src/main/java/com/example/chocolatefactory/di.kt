@@ -1,7 +1,7 @@
 package com.example.chocolatefactory
 
 import android.app.Application
-import com.example.chocolatefactory.data.repository.OmpaRepository
+import com.example.chocolatefactory.data.repository.WorkersRepository
 import com.example.chocolatefactory.data.source.RemoteDataSource
 import com.example.chocolatefactory.network.OmpaWorkersDataSource
 import com.example.chocolatefactory.network.RetrofitClass
@@ -30,7 +30,7 @@ private val appModule = module {
     single(named("baseUrl")) { "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/" }
     single { RetrofitClass(get(named("baseUrl"))) }
     factory<RemoteDataSource> { OmpaWorkersDataSource(get()) }
-    factory { OmpaRepository(get()) }
+    factory { WorkersRepository(get()) }
 
 }
 

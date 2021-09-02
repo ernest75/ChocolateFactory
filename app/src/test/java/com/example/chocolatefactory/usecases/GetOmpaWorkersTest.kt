@@ -1,6 +1,6 @@
 package com.example.chocolatefactory.usecases
 
-import com.example.chocolatefactory.data.repository.OmpaRepository
+import com.example.chocolatefactory.data.repository.WorkersRepository
 import com.example.chocolatefactory.utils.fakeOmpaWorker
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -15,13 +15,13 @@ import org.mockito.kotlin.whenever
 class GetOmpaWorkersTest {
 
     @Mock
-    lateinit var ompaRepository: OmpaRepository
+    lateinit var workersRepository: WorkersRepository
 
     lateinit var getOmpaWorkers: GetOmpaWorkers
 
     @Before
     fun setup() {
-        getOmpaWorkers = GetOmpaWorkers(ompaRepository)
+        getOmpaWorkers = GetOmpaWorkers(workersRepository)
 
     }
 
@@ -30,7 +30,7 @@ class GetOmpaWorkersTest {
         runBlocking {
             val workers = listOf(fakeOmpaWorker.copy(id = 1), fakeOmpaWorker.copy(id = 2))
 
-            whenever(ompaRepository.getOmpaWorkers()).thenReturn(workers)
+            whenever(workersRepository.getOmpaWorkers()).thenReturn(workers)
 
             val result = getOmpaWorkers.invoke()
 
