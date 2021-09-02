@@ -8,6 +8,7 @@ import com.example.chocolatefactory.network.models.OompaLoompaWorker
 import com.example.chocolatefactory.usecases.GetOmpaWorkers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MainViewModel(
     private val getOmpaWorkers: GetOmpaWorkers,
@@ -34,6 +35,15 @@ class MainViewModel(
 
     init {
         initScope()
+    }
+
+    fun onMovieClicked(worker: OmpaWorker) {
+        Timber.e("Clicked ${worker.firstName}")
+    }
+
+    override fun onCleared() {
+        destroyScope()
+        super.onCleared()
     }
 
 }

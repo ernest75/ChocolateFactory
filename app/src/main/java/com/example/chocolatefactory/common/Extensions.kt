@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.chocolatefactory.ChocolateApp
 import kotlin.properties.Delegates
 
@@ -17,8 +18,7 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): 
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
 fun ImageView.loadUrl(url: String) {
-    //Todo Add glide dependency
-   // Glide.with(context).load(url).into(this)
+    Glide.with(context).load(url).into(this)
 }
 
 inline fun <reified T : Activity> Context.intentFor(body: Intent.() -> Unit): Intent =

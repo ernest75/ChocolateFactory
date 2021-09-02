@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/iv_worker"
@@ -21,7 +21,7 @@
         android:id="@+id/tv_first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="@string/lorem_ipsum"
         app:layout_constraintStart_toEndOf="@+id/iv_worker"
@@ -31,7 +31,7 @@
         android:id="@+id/tv_last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="@string/lorem_ipsum"
         app:layout_constraintStart_toEndOf="@+id/iv_worker"
@@ -41,11 +41,10 @@
         android:id="@+id/tv_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="@string/lorem_ipsum"
         app:layout_constraintStart_toEndOf="@+id/iv_worker"
         app:layout_constraintTop_toBottomOf="@+id/tv_last_name" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
