@@ -2,10 +2,9 @@ package com.example.chocolatefactory.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.example.chocolatefactory.domain.OmpaWorker
-import com.example.chocolatefactory.network.models.Favorite
 import com.example.chocolatefactory.ui.main.MainViewModel
 import com.example.chocolatefactory.usecases.GetOmpaWorkers
+import com.example.chocolatefactory.utils.fakeOmpaWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -30,26 +29,6 @@ class MainViewModelTest {
     lateinit var observer: Observer<Any>
 
     private lateinit var vm: MainViewModel
-
-    private val fakeFavourite = Favorite(
-        "testColor",
-        "testFood",
-        "testRandomString",
-        "testSong"
-    )
-    private val fakeOmpaWorker = OmpaWorker(
-        "testName",
-        "testLastName",
-        fakeFavourite,
-        "testGender",
-        "testImage",
-        "testProfession",
-        "testEmail",
-        100,
-        "testCountry",
-        10,
-        0
-    )
 
     @Before
     fun setup() {
