@@ -37,7 +37,7 @@ class MainViewModel(
         initScope()
     }
 
-    fun onMovieClicked(worker: OmpaWorker) {
+    fun onWorkerClicked(worker: OmpaWorker) {
         Timber.e("Clicked ${worker.firstName}")
     }
 
