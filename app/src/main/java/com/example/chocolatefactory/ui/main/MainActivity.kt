@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.chocolatefactory.R
+import com.example.chocolatefactory.databinding.ActivityMainBinding
 import com.example.chocolatefactory.ui.main.MainViewModel.*
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -11,11 +12,13 @@ import timber.log.Timber
 
 class MainActivity : ScopeActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         viewModel.model.observe(this, Observer(::updateUi))
     }
