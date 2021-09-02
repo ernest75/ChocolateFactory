@@ -1,8 +1,13 @@
 package com.example.chocolatefactory
 
 import android.app.Application
+import com.example.chocolatefactory.data.repository.OmpaRepository
+import com.example.chocolatefactory.data.source.RemoteDataSource
+import com.example.chocolatefactory.network.OmpaWorkersDataSource
+import com.example.chocolatefactory.network.RetrofitClass
 import com.example.chocolatefactory.ui.main.MainActivity
 import com.example.chocolatefactory.ui.main.MainViewModel
+import com.example.chocolatefactory.usecases.GetOmpaWorkers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -22,14 +27,18 @@ fun Application.initDI() {
 
 private val appModule = module {
     single<CoroutineDispatcher> { Dispatchers.Main }
-    single(named("baseUrl")) { "https://api.themoviedb.org/3/" }
+    single(named("baseUrl")) { "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/" }
+    single { RetrofitClass(get(named("baseUrl"))) }
+    factory<RemoteDataSource> { OmpaWorkersDataSource(get()) }
+    factory { OmpaRepository(get()) }
 
 }
 
 
 val scopesModule = module {
     scope(named<MainActivity>()) {
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel(get(),get()) }
+        scoped { GetOmpaWorkers(get()) }
     }
 
 }

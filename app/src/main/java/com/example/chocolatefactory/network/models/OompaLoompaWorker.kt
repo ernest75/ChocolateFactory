@@ -1,15 +1,28 @@
 package com.example.chocolatefactory.network.models
 
+import com.google.gson.annotations.SerializedName
+
 data class OompaLoompaWorker (
-    val first_name : String,
-    val last_name : String,
+    @SerializedName("first_name")
+    val firstName : String,
+    @SerializedName("last_name")
+    val lastName : String,
+    @SerializedName("favorite")
     val favorite : Favorite,
+    @SerializedName("gender")
     val gender : String,
+    @SerializedName("image")
     val image : String,
+    @SerializedName("profession")
     val profession : String,
+    @SerializedName("email")
     val email : String,
+    @SerializedName("age")
     val age : Int,
+    @SerializedName("country")
     val country : String,
+    @SerializedName("height")
     val height : Int,
+    @SerializedName("id")
     val id : Int
 )
