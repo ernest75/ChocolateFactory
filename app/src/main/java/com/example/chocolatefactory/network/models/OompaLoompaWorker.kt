@@ -1,7 +1,6 @@
 package com.example.chocolatefactory.network.models
 
 data class OompaLoompaWorker (
-
     val first_name : String,
     val last_name : String,
     val favorite : Favorite,
