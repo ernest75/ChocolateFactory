@@ -26,7 +26,7 @@ class GetOmpaWorkersTest {
     }
 
     @Test
-    fun`use case uses repo`(){
+    fun`getOmpaWorkers use case returns correct data`(){
         runBlocking {
             val workers = listOf(fakeOmpaWorker.copy(id = 1), fakeOmpaWorker.copy(id = 2))
 
