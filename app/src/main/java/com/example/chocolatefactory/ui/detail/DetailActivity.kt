@@ -40,6 +40,7 @@ class DetailActivity : ScopeActivity() {
     private fun updateUi(uiModel: UiModel) {
 
         binding.progressBarDetail.visibility = if (uiModel is UiModel.Loading) View.VISIBLE else View.GONE
+        binding.clData.visibility = if (uiModel is UiModel.Loading) View.INVISIBLE else View.VISIBLE
         when(uiModel){
             is UiModel.Content -> {
                 populateView(uiModel)
