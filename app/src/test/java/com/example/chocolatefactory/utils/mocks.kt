@@ -1,6 +1,7 @@
 package com.example.chocolatefactory.utils
 
 import com.example.chocolatefactory.domain.OmpaWorker
+import com.example.chocolatefactory.domain.OmpaWorkerDetails
 import com.example.chocolatefactory.network.models.Favorite
 
 internal val fakeFavourite = Favorite(
@@ -21,4 +22,19 @@ internal val fakeOmpaWorker = OmpaWorker(
     "testCountry",
     10,
     0
+)
+
+internal val fakeDetailsOmpaWorker = OmpaWorkerDetails(
+    "testLastName",
+    "testDescription",
+    "testImage",
+    "testProffesion",
+    "testQuota",
+    -12L,
+    "testFirstName",
+    "testCountry",
+    -25L,
+    fakeFavourite,
+    "testGender",
+    "testEmail"
 )

@@ -1,6 +1,7 @@
 package com.example.chocolatefactory.data.repository
 
 import com.example.chocolatefactory.data.source.RemoteDataSource
+import com.example.chocolatefactory.utils.fakeDetailsOmpaWorker
 import com.example.chocolatefactory.utils.fakeOmpaWorker
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -25,7 +26,7 @@ class WorkersRepositoryTest {
     }
 
     @Test
-    fun `repo gets data from remote data source`(){
+    fun `repo gets correct list workers data from remote data source`(){
         runBlocking {
 
             val remoteWorkers = listOf(fakeOmpaWorker.copy(id = 1))
@@ -36,5 +37,21 @@ class WorkersRepositoryTest {
             assertEquals(remoteWorkers,result)
 
         }
+    }
+
+    @Test
+    fun `repo gets correct details worker from remote data source`(){
+        runBlocking {
+
+            val detailsWorkers = fakeDetailsOmpaWorker
+            val workerId = -1
+            whenever(remoteDataSource.getWorkersDetails(workerId)).thenReturn(detailsWorkers)
+
+            val result = workersRepository.getOmpaDetails(workerId)
+
+            assertEquals(detailsWorkers,result)
+        }
+
+
     }
 }
