@@ -3,10 +3,13 @@ package com.example.chocolatefactory.common
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -49,3 +52,12 @@ inline fun <VH : RecyclerView.ViewHolder, T> RecyclerView.Adapter<VH>.basicDiffU
 
 val Context.app: ChocolateApp
     get() = applicationContext as ChocolateApp
+
+fun TextView.formatHtml(text:String) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        this.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
+
+    } else {
+        this.text = Html.fromHtml(text)
+    }
+}
