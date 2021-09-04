@@ -33,87 +33,14 @@
 
     <ImageView
         android:id="@+id/iv_worker_detail"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.4"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.25"
         android:contentDescription="@string/description_image_worker"/>
-
-    <TextView
-        android:id="@+id/tv_worker_first_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintStart_toEndOf="@+id/iv_worker_detail"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp"/>
-
-    <TextView
-        android:id="@+id/tv_worker_last_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintStart_toEndOf="@+id/tv_worker_first_name"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="4dp"/>
-
-    <TextView
-        android:id="@+id/tv_worker_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintStart_toEndOf="@+id/tv_worker_last_name"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp" />
-
-    <TextView
-        android:id="@+id/tv_worker_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintStart_toEndOf="@+id/iv_worker_detail"
-        app:layout_constraintTop_toTopOf="@+id/tv_worker_first_name"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp"/>
-
-    <TextView
-        android:id="@+id/tv_worker_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintStart_toEndOf="@+id/iv_worker_detail"
-        app:layout_constraintTop_toTopOf="@+id/tv_worker_age"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp"/>
-
-    <TextView
-        android:id="@+id/tv_worker_profession"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintStart_toEndOf="@+id/iv_worker_detail"
-        app:layout_constraintTop_toTopOf="@+id/tv_worker_country"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp"/>
-
-    <TextView
-        android:id="@+id/tv_worker_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintStart_toEndOf="@+id/iv_worker_detail"
-        app:layout_constraintTop_toTopOf="@+id/tv_worker_profession"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp"/>
 
     <ScrollView
         app:layout_constraintTop_toBottomOf="@+id/iv_worker_detail"
@@ -127,50 +54,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@color/lightBackground"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.example.chocolatefactory.ui.customviews.OmpaWorkerDetailsView
+                android:id="@+id/cv_workerDetails"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/description"
-                style="@style/PrimaryTitle"/>
-
-            <TextView
-                android:id="@+id/tv_worker_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@tools:sample/lorem"
-                android:layout_marginTop="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/song"
-                android:layout_marginTop="16dp"
-                style="@style/PrimaryTitle"/>
-
-            <TextView
-                android:id="@+id/tv_worker_song"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@tools:sample/lorem"
-                android:layout_marginTop="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/random_string"
-                android:layout_marginTop="16dp"
-                style="@style/PrimaryTitle"/>
-
-            <TextView
-                android:id="@+id/tv_worker_random_string"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@tools:sample/lorem"
-                android:layout_marginTop="8dp"/>
-
-
+                android:lineSpacingMultiplier="1.5"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
     </ScrollView>

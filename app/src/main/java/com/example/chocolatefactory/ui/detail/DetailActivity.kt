@@ -54,16 +54,7 @@ class DetailActivity : ScopeActivity() {
 
         with(binding) {
             ivWorkerDetail.loadUrl(workerDetails.image)
-            tvWorkerFirstName.text = workerDetails.firstName
-            tvWorkerLastName.text = workerDetails.lastName
-            tvWorkerGender.text = workerDetails.gender
-            tvWorkerAge.text = workerDetails.age.toString()
-            tvWorkerCountry.text = workerDetails.country
-            tvWorkerProfession.text = workerDetails.profession
-            tvWorkerEmail.text = workerDetails.email
-            tvWorkerDescription.formatHtml(workerDetails.description)
-            tvWorkerSong.text = workerDetails.favorite.song
-            tvWorkerRandomString.text = workerDetails.favorite.randomString
+            cvWorkerDetails.setWorkerDetails(workerDetails)
 
         }
     }
