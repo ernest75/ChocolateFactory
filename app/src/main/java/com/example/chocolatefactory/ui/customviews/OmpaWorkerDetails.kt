@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
+import com.example.chocolatefactory.common.formatHtml
 import com.example.chocolatefactory.domain.OmpaWorkerDetails
 
 class OmpaWorkerDetailsView @JvmOverloads constructor(
@@ -49,7 +50,7 @@ class OmpaWorkerDetailsView @JvmOverloads constructor(
             appendLine(quota)
 
             bold { append("Description: ") }
-            appendLine(description)
+            appendLine(description.formatHtml())
 
             bold { append("Song: ") }
             appendLine(favorite.song)
