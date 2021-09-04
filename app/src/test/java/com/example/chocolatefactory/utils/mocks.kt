@@ -2,7 +2,7 @@ package com.example.chocolatefactory.utils
 
 import com.example.chocolatefactory.domain.OmpaWorker
 import com.example.chocolatefactory.domain.OmpaWorkerDetails
-import com.example.chocolatefactory.network.models.Favorite
+import com.example.chocolatefactory.ui.data.network.models.Favorite
 
 internal val fakeFavourite = Favorite(
     "testColor",

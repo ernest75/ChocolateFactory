@@ -1,4 +1,4 @@
-package com.example.chocolatefactory.network
+package com.example.chocolatefactory.ui.data.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

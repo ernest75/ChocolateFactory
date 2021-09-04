@@ -1,4 +1,4 @@
-package com.example.chocolatefactory.network
+package com.example.chocolatefactory.ui.data.network
 
 import com.example.chocolatefactory.common.toDomainWorker
 import com.example.chocolatefactory.common.toDomainWorkerDetails

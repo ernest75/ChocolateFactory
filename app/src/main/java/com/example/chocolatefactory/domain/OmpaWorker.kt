@@ -1,6 +1,6 @@
 package com.example.chocolatefactory.domain
 
-import com.example.chocolatefactory.network.models.Favorite
+import com.example.chocolatefactory.ui.data.network.models.Favorite
 
 data class OmpaWorker(
     val firstName: String,
