@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.example.chocolatefactory.R
 import com.example.chocolatefactory.common.formatHtml
 import com.example.chocolatefactory.common.loadUrl
+import com.example.chocolatefactory.common.loadUrlDetail
 import com.example.chocolatefactory.databinding.ActivityDetailBinding
 import com.example.chocolatefactory.databinding.ActivityMainBinding
 import com.example.chocolatefactory.ui.detail.DetailViewModel.*
@@ -53,7 +54,7 @@ class DetailActivity : ScopeActivity() {
         val workerDetails = uiModel.workerDetails
 
         with(binding) {
-            ivWorkerDetail.loadUrl(workerDetails.image)
+            ivWorkerDetail.loadUrlDetail(workerDetails.image)
             cvWorkerDetails.setWorkerDetails(workerDetails)
 
         }
