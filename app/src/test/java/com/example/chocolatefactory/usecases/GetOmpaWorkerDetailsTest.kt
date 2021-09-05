@@ -2,7 +2,6 @@ package com.example.chocolatefactory.usecases
 
 import com.example.chocolatefactory.data.repository.WorkersRepository
 import com.example.chocolatefactory.utils.fakeDetailsOmpaWorker
-import com.example.chocolatefactory.utils.fakeOmpaWorker
 import junit.framework.Assert
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
