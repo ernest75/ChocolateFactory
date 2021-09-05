@@ -58,7 +58,6 @@ class OmpaWorkerDetailsView @JvmOverloads constructor(
             bold { append("Random string: ") }
             appendLine(favorite.song)
 
-
         }
     }
 }

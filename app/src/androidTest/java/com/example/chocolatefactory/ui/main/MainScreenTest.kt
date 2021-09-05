@@ -69,4 +69,30 @@ class MainScreenTest : KoinTest {
 
     }
 
+    @Test
+    fun clickBackArrowDetailNavigatesToMain() {
+        Espresso.onView(withId(R.id.rv_main))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
+            .perform(
+                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    0,
+                    ViewActions.click()
+                )
+            )
+
+        Espresso.onView(withId(R.id.cl_data))
+            .check(
+                ViewAssertions.matches(
+                    ViewMatchers
+                        .hasDescendant(withId(R.id.iv_worker_detail))
+                )
+            )
+        Espresso.pressBack()
+        Espresso.onView(ViewMatchers.withId(R.id.rv_main))
+            .check(
+                ViewAssertions.matches(ViewMatchers.isDisplayed())
+            )
+
+    }
+
 }
