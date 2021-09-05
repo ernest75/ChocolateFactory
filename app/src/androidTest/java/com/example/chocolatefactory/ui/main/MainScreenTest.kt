@@ -54,7 +54,7 @@ class MainScreenTest : KoinTest {
     }
 
     @Test
-    fun clickAMovieNavigatesToDetail() {
+    fun clickAWorkerNavigatesToDetail() {
         Espresso.onView(withId(R.id.rv_main))
             .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
             .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
@@ -88,7 +88,7 @@ class MainScreenTest : KoinTest {
                 )
             )
         Espresso.pressBack()
-        Espresso.onView(ViewMatchers.withId(R.id.rv_main))
+        Espresso.onView(withId(R.id.rv_main))
             .check(
                 ViewAssertions.matches(ViewMatchers.isDisplayed())
             )

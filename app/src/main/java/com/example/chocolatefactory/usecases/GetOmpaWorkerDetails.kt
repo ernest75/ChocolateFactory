@@ -5,5 +5,6 @@ import com.example.chocolatefactory.domain.OmpaWorker
 import com.example.chocolatefactory.domain.OmpaWorkerDetails
 
 class GetOmpaWorkerDetails(private val workersRepository: WorkersRepository) {
-    suspend fun invoke(workerId: Int): OmpaWorkerDetails = workersRepository.getOmpaDetails(workerId)
+    suspend fun invoke(workerId: Int): OmpaWorkerDetails =
+        workersRepository.getOmpaDetails(workerId)
 }

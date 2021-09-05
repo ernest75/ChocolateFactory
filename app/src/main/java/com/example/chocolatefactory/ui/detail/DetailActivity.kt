@@ -21,7 +21,7 @@ import timber.log.Timber
 class DetailActivity : ScopeActivity() {
 
     companion object {
-        const val WORKER = "DetailActivity:movie"
+        const val WORKER = "DetailActivity:worker"
     }
     private lateinit var binding: ActivityDetailBinding
 

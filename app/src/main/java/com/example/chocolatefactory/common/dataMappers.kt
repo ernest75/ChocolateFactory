@@ -102,9 +102,9 @@ fun OmpaWorkerDetail.toDomainWorkerDetails(): OmpaWorkerDetails =
         email
     )
 
-fun OmpaWorkerDetails.toRoomWorkerDetails(workerId:Int): OmpaWorkerDetail =
+fun OmpaWorkerDetails.toRoomWorkerDetails(workerId: Int): OmpaWorkerDetail =
     OmpaWorkerDetail(
-        workerId= workerId,
+        workerId = workerId,
         lastName,
         description,
         image,

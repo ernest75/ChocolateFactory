@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/backgrounds/scenic" />
 
-        <com.example.chocolatefactory.ui.customviews.OmpaMain
+        <com.example.chocolatefactory.ui.customviews.OmpaWorkerDetailsView
             android:id="@+id/cv_worker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -39,14 +39,14 @@ private val appModule = module {
     single { RetrofitClass(get(named("baseUrl"))) }
     factory<RemoteDataSource> { OmpaWorkersDataSource(get()) }
     factory<LocalDataSource> { RoomDataSource(get()) }
-    factory { WorkersRepository(get(),get()) }
+    factory { WorkersRepository(get(), get()) }
 
 }
 
 
 val scopesModule = module {
     scope(named<MainActivity>()) {
-        viewModel { MainViewModel(get(),get()) }
+        viewModel { MainViewModel(get(), get()) }
         scoped { GetOmpaWorkers(get()) }
     }
 

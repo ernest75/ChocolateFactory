@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.example.chocolatefactory.common.formatHtml
+import com.example.chocolatefactory.domain.OmpaWorker
 import com.example.chocolatefactory.domain.OmpaWorkerDetails
 
 class OmpaWorkerDetailsView @JvmOverloads constructor(
@@ -58,6 +59,15 @@ class OmpaWorkerDetailsView @JvmOverloads constructor(
             bold { append("Random string: ") }
             appendLine(favorite.song)
 
+        }
+    }
+
+    fun setWorker(ompaWorker: OmpaWorker) = with(ompaWorker){
+        text = buildSpannedString {
+
+            bold { append(firstName) }
+            append(" ")
+            bold { append(lastName) }
         }
     }
 }

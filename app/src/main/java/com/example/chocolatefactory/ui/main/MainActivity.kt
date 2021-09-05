@@ -27,7 +27,7 @@ class MainActivity : ScopeActivity() {
         binding.rvMain.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             workersAdapter = WorkersAdapter(viewModel::onWorkerClicked)
-            val topSpacingDecoration = TopSpaceItemDecoration(10)
+            val topSpacingDecoration = TopSpaceItemDecoration(4)
             addItemDecoration(topSpacingDecoration)
             adapter = workersAdapter
 
