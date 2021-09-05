@@ -4,14 +4,16 @@ import com.example.chocolatefactory.data.source.LocalDataSource
 import com.example.chocolatefactory.data.source.RemoteDataSource
 import com.example.chocolatefactory.utils.fakeDetailsOmpaWorker
 import com.example.chocolatefactory.utils.fakeOmpaWorker
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.*
+import org.mockito.kotlin.atLeastOnce
+import org.mockito.kotlin.never
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
 @RunWith(MockitoJUnitRunner::class)
 class WorkersRepositoryTest {
