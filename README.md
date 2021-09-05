@@ -8,8 +8,8 @@ The diferent layers are containt on the same Android module but don't have inter
 
 #### UI 
 It's the more extern layer and contains all the Android framework related. Activities, ViewModels,fragments, xml, Sqlite Db (Room)... 
-#### Data
-It's the layer of the aplication logic, it contains the use cases and the repository
+#### Data / UseCases
+It's the layer of the aplication logic, it contains the use cases and the repository. It allows the comunication between UI and Domain
 #### Domain
 It's the most intern layer and contains the business logic, entities of the app
 
