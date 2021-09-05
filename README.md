@@ -2,7 +2,7 @@
 
 ## Architecture
 The arcchitecture of the app is a Clean Architecture with MvvM.
-The diferent layers are containt on the same Android module but don't have interactions from the internal layers don't have interactions with the external ones following Cleanm Architecture guide lines. 
+The diferent layers are containt on the same Android module but don't have interactions from the internal layers to the external ones following Clean Architecture guide lines. 
 
 ![Esquema Clean](https://user-images.githubusercontent.com/22010618/132135079-7198a96b-e18b-4c9f-ba36-f6e3c6e10c5e.png)
 
