@@ -20,6 +20,10 @@ class WorkersRepository(
     }
 
     suspend fun getOmpaDetails(workerId: Int): OmpaWorkerDetails {
-        return remoteDataSource.getWorkersDetails(workerId)
+        if (localDataSource.finWorkersDetailsByIdIdEmpty(workerId)){
+            val workerDetails = remoteDataSource.getWorkersDetails(workerId)
+            localDataSource.saveWorkersDetails(workerId,workerDetails)
+        }
+        return localDataSource.findWorkersDetailsById(workerId)
     }
 }

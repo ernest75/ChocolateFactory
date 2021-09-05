@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [OmpaWorker::class], version = 1)
+@Database(entities = [OmpaWorker::class, OmpaWorkerDetail::class], version = 1)
 @TypeConverters(FavoriteTypeConverter::class)
 abstract class ChocolateFactoryDatabase : RoomDatabase() {
 

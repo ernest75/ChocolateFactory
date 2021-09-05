@@ -12,8 +12,18 @@ interface OmpaWorkerDAO {
     fun getAllWorkers(): List<OmpaWorker>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertWorkers(movies: List<OmpaWorker>)
+    fun insertWorkers(workers: List<OmpaWorker>)
 
     @Query("SELECT COUNT(id) FROM OmpaWorker")
-    fun movieCount(): Int
+    fun workersCount(): Int
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertWorkerDetails(workerDetails: OmpaWorkerDetail)
+
+    @Query("SELECT * FROM OmpaWorkerDetail WHERE workerID = :id")
+    fun findWorkerDetailById(id: Int): OmpaWorkerDetail
+
+    @Query("SELECT COUNT(workerId) FROM OmpaWorkerDetail WHERE workerID = :workerId")
+    fun detailsCount(workerId:Int): Int
+
 }
