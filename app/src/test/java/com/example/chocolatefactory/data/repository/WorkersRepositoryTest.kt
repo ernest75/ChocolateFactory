@@ -30,16 +30,13 @@ class WorkersRepositoryTest {
     }
 
     @Test
-    fun `repo gets correct list workers data from remote data source when local is empty`(){
+    fun `repo gets workers data from remote data source when local is empty`(){
         runBlocking {
-
-            val remoteWorkers = listOf(fakeOmpaWorker.copy(id = 1))
             whenever(localDataSource.isEmpty()).thenReturn(true)
-            whenever(localDataSource.getLocalWorkers()).thenReturn(remoteWorkers)
 
-            val result = workersRepository.getOmpaWorkers()
+            workersRepository.getOmpaWorkers()
 
-            assertEquals(remoteWorkers,result)
+            verify(remoteDataSource, atLeastOnce()).getWorkers()
 
         }
     }
@@ -57,19 +54,7 @@ class WorkersRepositoryTest {
     }
 
     @Test
-    fun `repo calls remote data source if db is empty`(){
-        runBlocking {
-            whenever(localDataSource.isEmpty()).thenReturn(true)
-
-            workersRepository.getOmpaWorkers()
-
-            verify(remoteDataSource, atLeastOnce()).getWorkers();
-        }
-
-    }
-
-    @Test
-    fun `getOmpaWorkers saves data in DB if it's empty`(){
+    fun `repo saves workers to Db  when db is empty`(){
         runBlocking {
             val remoteWorkers = listOf(fakeOmpaWorker.copy(id = 1))
             whenever(localDataSource.isEmpty()).thenReturn(true)
@@ -77,24 +62,51 @@ class WorkersRepositoryTest {
 
             workersRepository.getOmpaWorkers()
 
-            verify(localDataSource).saveWorkers(remoteWorkers)
+            verify(localDataSource, atLeastOnce()).saveWorkers(remoteWorkers);
         }
 
     }
 
     @Test
-    fun `repo gets correct details worker from remote data source`(){
+    fun `repo gets workersDetails data from remote data source when local is empty`() {
         runBlocking {
+            val workerId = 1
+            whenever(localDataSource.finWorkersDetailsByIdIdEmpty(workerId)).thenReturn(true)
 
-            val detailsWorkers = fakeDetailsOmpaWorker
-            val workerId = -1
-            whenever(remoteDataSource.getWorkersDetails(workerId)).thenReturn(detailsWorkers)
+            workersRepository.getOmpaDetails(workerId)
 
-            val result = workersRepository.getOmpaDetails(workerId)
+            verify(remoteDataSource, atLeastOnce()).getWorkersDetails(workerId)
+        }
+    }
 
-            assertEquals(detailsWorkers,result)
+    @Test
+    fun `repo gets workersDetails from local data source when db is not empty`() {
+        runBlocking {
+            val workerId = 1
+            whenever(localDataSource.finWorkersDetailsByIdIdEmpty(workerId))
+                .thenReturn(false)
+
+            workersRepository.getOmpaDetails(workerId)
+
+            verify(remoteDataSource, never()).getWorkersDetails(workerId)
+        }
+    }
+
+    @Test
+    fun `repo saves workersDetails to Db  when db is empty`(){
+        runBlocking {
+            val remoteWorkerDetail = fakeDetailsOmpaWorker
+            val workerId = 1
+            whenever(localDataSource.finWorkersDetailsByIdIdEmpty(workerId))
+                .thenReturn(true)
+            whenever(remoteDataSource.getWorkersDetails(workerId))
+                .thenReturn(remoteWorkerDetail)
+
+            workersRepository.getOmpaDetails(workerId)
+
+            verify(localDataSource, atLeastOnce()).saveWorkersDetails(workerId, remoteWorkerDetail);
         }
 
-
     }
+
 }
