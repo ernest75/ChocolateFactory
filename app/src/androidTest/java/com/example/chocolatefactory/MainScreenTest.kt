@@ -8,8 +8,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.rule.GrantPermissionRule
-import com.example.chocolatefactory.network.RetrofitClass
+import com.example.chocolatefactory.ui.data.network.RetrofitClass
 import com.example.chocolatefactory.ui.main.MainActivity
 import com.example.chocolatefactory.utils.MockWebServerRule
 import com.example.chocolatefactory.utils.fromJson
@@ -27,16 +26,15 @@ class MainScreenTest : KoinTest {
 
     private val mockWebServerRule = MockWebServerRule()
 
-    val resource = OkHttp3IdlingResource.create("OkHttp", get<RetrofitClass>().okHttpClient)
-
-
     @get:Rule
-    val testRule: RuleChain = RuleChain
+    val testRule:RuleChain  = RuleChain
         .outerRule(mockWebServerRule)
         .around(ActivityScenarioRule(MainActivity::class.java))
 
     @Before
     fun setUp() {
+
+        val resource = OkHttp3IdlingResource.create("OkHttp", get<RetrofitClass>().okHttpClient)
         mockWebServerRule.server.enqueue(
             MockResponse().fromJson("workersList.json")
         )

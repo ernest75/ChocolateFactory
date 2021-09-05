@@ -25,7 +25,7 @@ class MockWebServerRule : TestRule {
     }
 
     private fun replaceBaseUrl() {
-        val testModule = module {
+        val testModule = module (override = true){
             single(named("baseUrl")) { askMockServerUrlOnAnotherThread() }
         }
         loadKoinModules(testModule)
