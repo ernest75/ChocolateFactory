@@ -2,9 +2,12 @@ package com.example.chocolatefactory
 
 import android.app.Application
 import com.example.chocolatefactory.data.repository.WorkersRepository
+import com.example.chocolatefactory.data.source.LocalDataSource
 import com.example.chocolatefactory.data.source.RemoteDataSource
-import com.example.chocolatefactory.network.OmpaWorkersDataSource
-import com.example.chocolatefactory.network.RetrofitClass
+import com.example.chocolatefactory.ui.data.database.ChocolateFactoryDatabase
+import com.example.chocolatefactory.ui.data.database.RoomDataSource
+import com.example.chocolatefactory.ui.data.network.OmpaWorkersDataSource
+import com.example.chocolatefactory.ui.data.network.RetrofitClass
 import com.example.chocolatefactory.ui.detail.DetailActivity
 import com.example.chocolatefactory.ui.detail.DetailViewModel
 import com.example.chocolatefactory.ui.main.MainActivity
@@ -32,9 +35,11 @@ fun Application.initDI() {
 private val appModule = module {
     single<CoroutineDispatcher> { Dispatchers.Main }
     single(named("baseUrl")) { "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/" }
+    single { ChocolateFactoryDatabase.build(get()) }
     single { RetrofitClass(get(named("baseUrl"))) }
     factory<RemoteDataSource> { OmpaWorkersDataSource(get()) }
-    factory { WorkersRepository(get()) }
+    factory<LocalDataSource> { RoomDataSource(get()) }
+    factory { WorkersRepository(get(),get()) }
 
 }
 

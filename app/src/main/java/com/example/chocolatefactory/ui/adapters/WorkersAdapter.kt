@@ -33,9 +33,7 @@ class WorkersAdapter(private val listener: (OmpaWorker) -> Unit) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = WorkerItemBinding.bind(view)
         fun bind(worker: OmpaWorker) = with(binding) {
-            tvFirstName.text = worker.firstName
-            tvLastName.text = worker.lastName
-            tvGender.text = worker.gender
+            cvWorker.setWorker(worker)
             ivWorker.loadUrl(worker.image)
         }
     }

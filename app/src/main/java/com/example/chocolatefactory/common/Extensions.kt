@@ -5,23 +5,40 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.text.Html
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.chocolatefactory.ChocolateApp
+import com.example.chocolatefactory.R
 import kotlin.properties.Delegates
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
 fun ImageView.loadUrl(url: String) {
-    Glide.with(context).load(url).into(this)
+    Glide.with(context)
+        .load(url)
+        .placeholder(R.drawable.ic_baseline_timer)
+        .error(R.drawable.ic_baseline_error)
+        .into(this)
+
+}
+
+//todo Investigate this behaviour when passing placeholder match parent don't work for height
+// it remains the placeholder one
+fun ImageView.loadUrlDetail(url: String) {
+    Glide.with(context)
+        .load(url)
+        .error(R.drawable.ic_baseline_error)
+        .into(this)
+
 }
 
 inline fun <reified T : Activity> Context.intentFor(body: Intent.() -> Unit): Intent =
@@ -53,11 +70,12 @@ inline fun <VH : RecyclerView.ViewHolder, T> RecyclerView.Adapter<VH>.basicDiffU
 val Context.app: ChocolateApp
     get() = applicationContext as ChocolateApp
 
-fun TextView.formatHtml(text:String) {
+fun String.formatHtml(): SpannableStringBuilder {
+    val textFormatted: SpannableStringBuilder
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        this.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
-
+        textFormatted = Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT) as SpannableStringBuilder
     } else {
-        this.text = Html.fromHtml(text)
+        textFormatted = Html.fromHtml(this) as SpannableStringBuilder
     }
+    return textFormatted
 }

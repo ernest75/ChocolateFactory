@@ -1,5 +1,6 @@
 package com.example.chocolatefactory.data.repository
 
+import com.example.chocolatefactory.data.source.LocalDataSource
 import com.example.chocolatefactory.data.source.RemoteDataSource
 import com.example.chocolatefactory.utils.fakeDetailsOmpaWorker
 import com.example.chocolatefactory.utils.fakeOmpaWorker
@@ -10,7 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.whenever
+import org.mockito.kotlin.*
 
 @RunWith(MockitoJUnitRunner::class)
 class WorkersRepositoryTest {
@@ -18,40 +19,94 @@ class WorkersRepositoryTest {
     @Mock
     lateinit var remoteDataSource: RemoteDataSource
 
+    @Mock
+    lateinit var localDataSource: LocalDataSource
+
     lateinit var workersRepository: WorkersRepository
 
     @Before
     fun setup() {
-        workersRepository = WorkersRepository(remoteDataSource)
+        workersRepository = WorkersRepository(remoteDataSource,localDataSource)
     }
 
     @Test
-    fun `repo gets correct list workers data from remote data source`(){
+    fun `repo gets workers data from remote data source when local is empty`(){
         runBlocking {
+            whenever(localDataSource.isEmpty()).thenReturn(true)
 
+            workersRepository.getOmpaWorkers()
+
+            verify(remoteDataSource, atLeastOnce()).getWorkers()
+
+        }
+    }
+
+    @Test
+    fun `repo gets workers from local data source when db is not empty`(){
+        runBlocking {
+            whenever(localDataSource.isEmpty()).thenReturn(false)
+
+            workersRepository.getOmpaWorkers()
+
+            verify(remoteDataSource, never()).getWorkers();
+        }
+
+    }
+
+    @Test
+    fun `repo saves workers to Db  when db is empty`(){
+        runBlocking {
             val remoteWorkers = listOf(fakeOmpaWorker.copy(id = 1))
+            whenever(localDataSource.isEmpty()).thenReturn(true)
             whenever(remoteDataSource.getWorkers()).thenReturn(remoteWorkers)
 
-            val result = workersRepository.getOmpaWorkers()
+            workersRepository.getOmpaWorkers()
 
-            assertEquals(remoteWorkers,result)
+            verify(localDataSource, atLeastOnce()).saveWorkers(remoteWorkers);
+        }
 
+    }
+
+    @Test
+    fun `repo gets workersDetails data from remote data source when local is empty`() {
+        runBlocking {
+            val workerId = 1
+            whenever(localDataSource.finWorkersDetailsByIdIdEmpty(workerId)).thenReturn(true)
+
+            workersRepository.getOmpaDetails(workerId)
+
+            verify(remoteDataSource, atLeastOnce()).getWorkersDetails(workerId)
         }
     }
 
     @Test
-    fun `repo gets correct details worker from remote data source`(){
+    fun `repo gets workersDetails from local data source when db is not empty`() {
         runBlocking {
+            val workerId = 1
+            whenever(localDataSource.finWorkersDetailsByIdIdEmpty(workerId))
+                .thenReturn(false)
 
-            val detailsWorkers = fakeDetailsOmpaWorker
-            val workerId = -1
-            whenever(remoteDataSource.getWorkersDetails(workerId)).thenReturn(detailsWorkers)
+            workersRepository.getOmpaDetails(workerId)
 
-            val result = workersRepository.getOmpaDetails(workerId)
+            verify(remoteDataSource, never()).getWorkersDetails(workerId)
+        }
+    }
 
-            assertEquals(detailsWorkers,result)
+    @Test
+    fun `repo saves workersDetails to Db  when db is empty`(){
+        runBlocking {
+            val remoteWorkerDetail = fakeDetailsOmpaWorker
+            val workerId = 1
+            whenever(localDataSource.finWorkersDetailsByIdIdEmpty(workerId))
+                .thenReturn(true)
+            whenever(remoteDataSource.getWorkersDetails(workerId))
+                .thenReturn(remoteWorkerDetail)
+
+            workersRepository.getOmpaDetails(workerId)
+
+            verify(localDataSource, atLeastOnce()).saveWorkersDetails(workerId, remoteWorkerDetail);
         }
 
-
     }
+
 }

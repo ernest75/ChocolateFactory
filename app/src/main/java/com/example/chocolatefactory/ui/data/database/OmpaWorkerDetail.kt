@@ -1,8 +1,13 @@
-package com.example.chocolatefactory.domain
+package com.example.chocolatefactory.ui.data.database
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.chocolatefactory.ui.data.network.models.Favorite
 
-class OmpaWorkerDetails(
+@Entity
+data class OmpaWorkerDetail (
+    @PrimaryKey
+    val workerId:Int,
     val lastName: String,
     val description: String,
     val image: String,
@@ -12,7 +17,7 @@ class OmpaWorkerDetails(
     val firstName: String,
     val country: String,
     val age: Long,
-    val favorite: Favorite,
+    val favorite: FavoriteLocal,
     val gender: String,
     val email: String
 )

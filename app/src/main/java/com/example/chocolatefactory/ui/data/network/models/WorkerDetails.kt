@@ -1,4 +1,4 @@
-package com.example.chocolatefactory.network.models
+package com.example.chocolatefactory.ui.data.network.models
 
 import com.google.gson.annotations.SerializedName
 
